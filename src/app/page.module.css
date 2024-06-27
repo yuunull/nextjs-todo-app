@@ -1,0 +1,69 @@
+.container {
+  max-width: 900px;
+  padding: 60px;
+}
+
+.todoItemContainer {
+  margin-top: 20px;
+}
+
+.todoItem {
+  display: flex;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.todoItemTitle {
+  width: 50%;
+}
+
+.todoItemCompleted {
+  width: 20%;
+}
+
+.todoItemAction {
+  display: flex;
+  width: 30%;
+}
+
+.todoItemActionList {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+}
+
+.todoItemCreateContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.todoItemCreate {
+  padding: 0 10px;
+  color: white;
+  border-color: dodgerblue;
+  background-color: dodgerblue;
+  cursor: pointer;
+}
+
+.todoItemEdit {
+  padding: 0 10px;
+  border-color: darkkhaki;
+  background-color: darkkhaki;
+  cursor: pointer;
+}
+
+.todoItemDone {
+  padding: 0 10px;
+  color: white;
+  border-color: darkgreen;
+  background-color: darkgreen;
+  cursor: pointer;
+}
+
+.todoItemUnDone {
+  padding: 0 10px;
+  color: white;
+  border-color: chocolate;
+  background-color: chocolate;
+  cursor: pointer;
+}
