@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import { Modal } from "@/components/modal";
+import { StatusLabel } from "@/components/statusLabel";
 
 export type Todo = {
   id: number;
@@ -61,7 +62,7 @@ export default function Home() {
               <li className={styles.todoItem} key={todo.id}>
                 <div className={styles.todoItemTitle}>{todo.title}</div>
                 <div className={styles.todoItemCompleted}>
-                  {todo.completed ? "完了" : "未完了"}
+                  <StatusLabel completed={todo.completed} />
                 </div>
                 <div className={styles.todoItemAction}>
                   <ul className={styles.todoItemActionList}>
