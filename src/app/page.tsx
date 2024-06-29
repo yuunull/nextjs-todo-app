@@ -48,34 +48,36 @@ export default function Home() {
   return (
     <main>
       <div className={styles.container}>
-        <div className={styles.todoItemCreateContainer}>
+        <div className={styles["todo-item-create-container"]}>
           <button
-            className={styles.todoItemCreate}
+            className={styles["todo-item-create"]}
             onClick={() => handleOpenModal()}
           >
             タスクを追加する
           </button>
         </div>
-        <div className={styles.todoItemContainer}>
+        <div className={styles["todo-item-container"]}>
           <ul>
             {todos.map((todo) => (
-              <li className={styles.todoItem} key={todo.id}>
-                <div className={styles.todoItemTitle}>{todo.title}</div>
-                <div className={styles.todoItemCompleted}>
+              <li className={styles["todo-item"]} key={todo.id}>
+                <div className={styles["todo-item-title"]}>{todo.title}</div>
+                <div className={styles["todo-item-completed"]}>
                   <StatusLabel completed={todo.completed} />
                 </div>
-                <div className={styles.todoItemAction}>
-                  <ul className={styles.todoItemActionList}>
+                <div className={styles["todo-item-action"]}>
+                  <ul className={styles["todo-item-action-list"]}>
                     <li>
-                      <button className={styles.todoItemEdit}>編集する</button>
+                      <button className={styles["todo-item-edit"]}>
+                        編集する
+                      </button>
                     </li>
                     <li>
                       {todo.completed ? (
-                        <button className={styles.todoItemUnDone}>
+                        <button className={styles["todo-item-un-done"]}>
                           未完了に戻す
                         </button>
                       ) : (
-                        <button className={styles.todoItemDone}>
+                        <button className={styles["todo-item-done"]}>
                           完了にする
                         </button>
                       )}

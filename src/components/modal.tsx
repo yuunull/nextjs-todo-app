@@ -42,12 +42,12 @@ export const Modal: React.FC<Props> = (props) => {
             onChange={handleChange}
             placeholder="タスク内容を入力"
           />
-          <div className={styles.modalButton}>
-            <button className={styles.buttonOk} type="submit">
+          <div className={styles["modal-button"]}>
+            <button className={styles["button-ok"]} type="submit">
               {props.todo ? "更新" : "追加"}
             </button>
             <button
-              className={styles.buttonCancel}
+              className={styles["button-cancel"]}
               type="button"
               onClick={props.onClose}
             >
