@@ -3,42 +3,42 @@
   padding: 60px;
 }
 
-.todoItemContainer {
+.todo-item-container {
   margin-top: 20px;
 }
 
-.todoItem {
+.todo-item {
   display: flex;
   list-style: none;
   margin-top: 10px;
 }
 
-.todoItemTitle {
+.todo-item-title {
   width: 50%;
 }
 
-.todoItemCompleted {
+.todo-item-completed {
   width: 20%;
 }
 
-.todoItemAction {
+.todo-item-action {
   display: flex;
   width: 30%;
 }
 
-.todoItemActionList {
+.todo-item-action-list {
   display: flex;
   list-style: none;
   gap: 10px;
   align-items: center;
 }
 
-.todoItemCreateContainer {
+.todo-item-create-container {
   display: flex;
   justify-content: flex-end;
 }
 
-.todoItemCreate {
+.todo-item-create {
   padding: 0 10px;
   color: white;
   border-color: dodgerblue;
@@ -46,14 +46,14 @@
   cursor: pointer;
 }
 
-.todoItemEdit {
+.todo-item-edit {
   padding: 0 10px;
   border-color: darkkhaki;
   background-color: darkkhaki;
   cursor: pointer;
 }
 
-.todoItemDone {
+.todo-item-done {
   padding: 0 10px;
   color: white;
   border-color: darkgreen;
@@ -61,7 +61,7 @@
   cursor: pointer;
 }
 
-.todoItemUnDone {
+.todo-item-un-done {
   padding: 0 10px;
   color: white;
   border-color: chocolate;
