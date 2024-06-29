@@ -1,0 +1,9 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "compilerOptions": {
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  },
+  "rules": {
+    "color-function-notation": null
+  }
+}
