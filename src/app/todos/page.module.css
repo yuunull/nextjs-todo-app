@@ -1,0 +1,21 @@
+.container {
+  max-width: 1100px;
+  padding: 60px;
+}
+
+.todo-item-container {
+  margin-top: 20px;
+}
+
+.todo-item-create-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.todo-item-create {
+  padding: 0 10px;
+  color: white;
+  border-color: dodgerblue;
+  background-color: dodgerblue;
+  cursor: pointer;
+}
