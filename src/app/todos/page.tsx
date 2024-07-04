@@ -30,13 +30,34 @@ export default function Todos() {
     setEditIndex(null);
   };
 
-  const handleSubmitTask = (todo: Todo) => {
-    if (editIndex !== null) {
-      const updatedTasks = [...todos];
-      updatedTasks[editIndex] = todo;
-      setTodos(updatedTasks);
-    } else {
-      setTodos([...todos, todo]);
+  const handleSubmitTask = async (todo: Todo) => {
+    const requestOptions = {
+      method: editIndex !== null ? "PUT" : "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(todo),
+    };
+
+    const endpoint =
+      editIndex !== null ? `/api/todos/${todo.id}` : "/api/todos";
+
+    try {
+      const response = await fetch(endpoint, requestOptions);
+      const result = await response.json();
+      if (response.ok) {
+        if (editIndex !== null) {
+          const updatedTasks = [...todos];
+          updatedTasks[editIndex] = result;
+          setTodos(updatedTasks);
+        } else {
+          setTodos([...todos, result]);
+        }
+        handleCloseModal();
+      } else {
+        // エラーハンドリング
+        console.error("Failed to save the todo:", result);
+      }
+    } catch (error) {
+      console.error("Error saving the todo:", error);
     }
   };
 
