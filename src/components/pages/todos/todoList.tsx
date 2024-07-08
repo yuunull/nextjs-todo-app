@@ -1,12 +1,13 @@
 import React from "react";
 import styles from "./todoList.module.css";
-import TodoRow, { Todo } from "./todo";
+import { Todo } from "@/contexts/todoProviderContext";
+import { TodoRow } from "./todo";
 
-export type Props = {
+type Props = {
   todos: Todo[];
 };
 
-const TodoList: React.FC<Props> = ({ todos }) => {
+export const TodoList: React.FC<Props> = ({ todos }) => {
   return todos ? (
     <>
       <ul>
@@ -21,5 +22,3 @@ const TodoList: React.FC<Props> = ({ todos }) => {
     <div>Not Todos</div>
   );
 };
-
-export default TodoList;

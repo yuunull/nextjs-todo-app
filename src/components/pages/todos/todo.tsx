@@ -1,14 +1,9 @@
 import React from "react";
 import styles from "./todo.module.css";
 import { StatusLabel } from "@/components/statusLabel";
+import { Todo } from "@/contexts/todoProviderContext";
 
-export type Todo = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
-
-const TodoRow: React.FC<Todo> = (todo) => {
+export const TodoRow: React.FC<Todo> = (todo) => {
   return (
     <>
       <div className={styles["todo-item-title"]}>{todo.title}</div>
@@ -34,5 +29,3 @@ const TodoRow: React.FC<Todo> = (todo) => {
     </>
   );
 };
-
-export default TodoRow;

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Page from "../src/app/todos/page";
+import Page from "../src/app/(pages)/todos/page";
 
 describe("Page Component", () => {
   it("renders correctly", () => {
