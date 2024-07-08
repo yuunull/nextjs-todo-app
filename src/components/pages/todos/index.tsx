@@ -1,30 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./index.module.css";
 import { Todo, useTodos } from "@/contexts/todoProviderContext";
 import { Modal } from "@/components/modal";
 import { TodoList } from "./todoList";
+import useModal from "@/hooks/useModal";
 
 export const TodoLayout = () => {
-  const { todos, addTodo } = useTodos();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentTodo, setCurrentTodo] = useState<Todo | null>(null);
-  const [editIndex, setEditIndex] = useState(null);
+  const { todos, addTodo, editTodo } = useTodos();
+  const { isModalOpen, currentTodo, openModal, closeModal } = useModal();
 
-  const handleOpenModal = (task = null, index = null) => {
-    setCurrentTodo(task);
-    setEditIndex(index);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setCurrentTodo(null);
-    setEditIndex(null);
-  };
-
-  const handleSubmitTask = (todo: Todo) => {
-    addTodo(todo);
-    handleCloseModal();
+  const handleSubmitModal = (todo: Todo) => {
+    todo.id === 0 ? addTodo(todo) : editTodo(todo);
+    closeModal();
   };
 
   return (
@@ -33,20 +20,20 @@ export const TodoLayout = () => {
         <div className={styles["todo-item-create-container"]}>
           <button
             className={styles["todo-item-create"]}
-            onClick={() => handleOpenModal()}
+            onClick={() => openModal()}
           >
             タスクを追加する
           </button>
         </div>
         <div className={styles["todo-item-container"]}>
-          <TodoList todos={todos} />
+          <TodoList todos={todos} openModal={openModal} />
         </div>
       </div>
       <div>
         {isModalOpen && (
           <Modal
-            onClose={handleCloseModal}
-            onSubmit={handleSubmitTask}
+            onClose={closeModal}
+            onSubmit={handleSubmitModal}
             todo={currentTodo}
           />
         )}

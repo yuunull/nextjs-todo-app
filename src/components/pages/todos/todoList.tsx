@@ -5,15 +5,16 @@ import { TodoRow } from "./todo";
 
 type Props = {
   todos: Todo[];
+  openModal: (todo: Todo | null) => void;
 };
 
-export const TodoList: React.FC<Props> = ({ todos }) => {
+export const TodoList: React.FC<Props> = ({ todos, openModal }) => {
   return todos ? (
     <>
       <ul>
         {todos.map((todo) => (
           <li className={styles["todo-item"]} key={todo.id}>
-            <TodoRow {...todo} />
+            <TodoRow todo={todo} openModal={openModal} />
           </li>
         ))}
       </ul>

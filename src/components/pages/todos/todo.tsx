@@ -3,7 +3,12 @@ import styles from "./todo.module.css";
 import { StatusLabel } from "@/components/statusLabel";
 import { Todo } from "@/contexts/todoProviderContext";
 
-export const TodoRow: React.FC<Todo> = (todo) => {
+type Props = {
+  todo: Todo;
+  openModal: (todo: Todo | null) => void;
+};
+
+export const TodoRow: React.FC<Props> = ({ todo, openModal }) => {
   return (
     <>
       <div className={styles["todo-item-title"]}>{todo.title}</div>
@@ -13,7 +18,12 @@ export const TodoRow: React.FC<Todo> = (todo) => {
       <div className={styles["todo-item-action"]}>
         <ul className={styles["todo-item-action-list"]}>
           <li>
-            <button className={styles["todo-item-edit"]}>編集する</button>
+            <button
+              className={styles["todo-item-edit"]}
+              onClick={() => openModal(todo)}
+            >
+              編集する
+            </button>
           </li>
           <li>
             {todo.completed ? (
