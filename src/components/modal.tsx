@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./modal.module.css";
-import { Todo } from "@/app/page";
+import { Todo } from "@/contexts/todoProviderContext";
 
 type Props = {
   todo: Todo | null;
@@ -20,7 +20,6 @@ export const Modal: React.FC<Props> = (props) => {
   }, [props.todo]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setTodo((prev) => ({ ...prev, title: e.target.value }));
   };
 
