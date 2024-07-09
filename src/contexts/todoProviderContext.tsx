@@ -58,10 +58,7 @@ export const TodoProvider: React.FC<Props> = ({ children }) => {
     };
 
     try {
-      const response = await fetch(
-        `/api/todos/${editedTodo.id}`,
-        requestOptions
-      );
+      const response = await fetch("/api/todos", requestOptions);
       const result = await response.json();
       if (response.ok) {
         setTodos(
