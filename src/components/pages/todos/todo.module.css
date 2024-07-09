@@ -32,11 +32,3 @@
   background-color: darkgreen;
   cursor: pointer;
 }
-
-.todo-item-un-done {
-  padding: 0 10px;
-  color: white;
-  border-color: chocolate;
-  background-color: chocolate;
-  cursor: pointer;
-}

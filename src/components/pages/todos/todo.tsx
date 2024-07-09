@@ -6,9 +6,10 @@ import { Todo } from "@/contexts/todoProviderContext";
 type Props = {
   todo: Todo;
   openModal: (todo: Todo | null) => void;
+  done: (todo: Todo) => void;
 };
 
-export const TodoRow: React.FC<Props> = ({ todo, openModal }) => {
+export const TodoRow: React.FC<Props> = ({ todo, openModal, done }) => {
   return (
     <>
       <div className={styles["todo-item-title"]}>{todo.title}</div>
@@ -16,25 +17,27 @@ export const TodoRow: React.FC<Props> = ({ todo, openModal }) => {
         <StatusLabel completed={todo.completed} />
       </div>
       <div className={styles["todo-item-action"]}>
-        <ul className={styles["todo-item-action-list"]}>
-          <li>
-            <button
-              className={styles["todo-item-edit"]}
-              onClick={() => openModal(todo)}
-            >
-              編集する
-            </button>
-          </li>
-          <li>
-            {todo.completed ? (
-              <button className={styles["todo-item-un-done"]}>
-                未完了に戻す
+        {!todo.completed ? (
+          <ul className={styles["todo-item-action-list"]}>
+            <li>
+              <button
+                className={styles["todo-item-edit"]}
+                onClick={() => openModal(todo)}
+              >
+                編集する
               </button>
-            ) : (
-              <button className={styles["todo-item-done"]}>完了にする</button>
-            )}
-          </li>
-        </ul>
+            </li>
+            <li>
+              <button
+                className={styles["todo-item-done"]}
+                disabled={todo.completed}
+                onClick={() => done({ ...todo, completed: true })}
+              >
+                完了にする
+              </button>
+            </li>
+          </ul>
+        ) : null}
       </div>
     </>
   );

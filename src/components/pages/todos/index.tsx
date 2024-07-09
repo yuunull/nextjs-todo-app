@@ -6,7 +6,7 @@ import { TodoList } from "./todoList";
 import useModal from "@/hooks/useModal";
 
 export const TodoLayout = () => {
-  const { todos, addTodo, editTodo } = useTodos();
+  const { todos, addTodo, editTodo, done } = useTodos();
   const { isModalOpen, currentTodo, openModal, closeModal } = useModal();
 
   const handleSubmitModal = (todo: Todo) => {
@@ -26,7 +26,7 @@ export const TodoLayout = () => {
           </button>
         </div>
         <div className={styles["todo-item-container"]}>
-          <TodoList todos={todos} openModal={openModal} />
+          <TodoList todos={todos} openModal={openModal} done={done} />
         </div>
       </div>
       <div>

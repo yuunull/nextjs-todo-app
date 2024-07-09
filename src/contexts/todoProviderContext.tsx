@@ -14,10 +14,12 @@ const TodoContext = createContext<{
   todos: Todo[];
   addTodo: (todo: Todo) => void;
   editTodo: (todo: Todo) => void;
+  done: (todo: Todo) => void;
 }>({
   todos: [],
   addTodo: () => {},
   editTodo: () => {},
+  done: () => {},
 });
 
 export const TodoProvider: React.FC<Props> = ({ children }) => {
@@ -30,7 +32,6 @@ export const TodoProvider: React.FC<Props> = ({ children }) => {
   }, []);
 
   const addTodo = async (todo: Todo) => {
-    console.log("テスト", todo);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -58,7 +59,10 @@ export const TodoProvider: React.FC<Props> = ({ children }) => {
     };
 
     try {
-      const response = await fetch("/api/todos", requestOptions);
+      const response = await fetch(
+        `/api/todos/${editedTodo.id}`,
+        requestOptions
+      );
       const result = await response.json();
       if (response.ok) {
         setTodos(
@@ -72,8 +76,33 @@ export const TodoProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
+  const done = async (doneTodo: Todo) => {
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(doneTodo),
+    };
+
+    try {
+      const response = await fetch(
+        `/api/todos/${doneTodo.id}/complete`,
+        requestOptions
+      );
+      const result = await response.json();
+      if (response.ok) {
+        setTodos(
+          todos.map((todo) => (todo.id === doneTodo.id ? doneTodo : todo))
+        );
+      } else {
+        console.error("Failed to edit the todo:", result);
+      }
+    } catch (error) {
+      console.error("Error editing the todo:", error);
+    }
+  };
+
   return (
-    <TodoContext.Provider value={{ todos, addTodo, editTodo }}>
+    <TodoContext.Provider value={{ todos, addTodo, editTodo, done }}>
       {children}
     </TodoContext.Provider>
   );
