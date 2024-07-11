@@ -1,35 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { createData, fetchListData } from "@/lib/db/todoDataService";
+import { commonMiddleware } from "@/lib/commonMiddleware";
 
-const prisma = new PrismaClient();
+const getHandler = async (): Promise<NextResponse> => {
+  const data = await fetchListData();
+  return NextResponse.json(data);
+};
 
-export async function GET() {
-  const todos = await prisma.todo.findMany({
-    orderBy: {
-      id: "asc",
-    },
-  });
-  return NextResponse.json(todos);
-}
-
-export async function POST(req: NextRequest) {
-  try {
-    const { title } = await req.json();
-    if (!title) {
-      return new NextResponse(null, {
-        status: 400,
-        statusText: "Title is required",
-      });
-    }
-    const newTodo = await prisma.todo.create({
-      data: { title },
-    });
-
-    return NextResponse.json(newTodo, { status: 201 });
-  } catch (error) {
+const postHandler = async (request: NextRequest): Promise<NextResponse> => {
+  const { title } = await request.json();
+  if (!title) {
     return new NextResponse(null, {
-      status: 500,
-      statusText: "Internal Server Error",
+      status: 400,
+      statusText: "Title is required",
     });
   }
-}
+  const newTodo = await createData(title);
+  return NextResponse.json(newTodo, { status: 201 });
+};
+
+export const GET = commonMiddleware(getHandler);
+export const POST = commonMiddleware(postHandler);
