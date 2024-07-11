@@ -11,7 +11,6 @@ export const TodoLayout = () => {
 
   const handleSubmitModal = (todo: Todo) => {
     todo.id === 0 ? addTodo(todo) : editTodo(todo);
-    closeModal();
   };
 
   return (
