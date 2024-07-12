@@ -9,6 +9,7 @@ type Props = {
 };
 
 export const Modal: React.FC<Props> = (props) => {
+  const [hasError, setHasError] = useState(false);
   const [todo, setTodo] = useState<Todo>(
     props.todo || { id: 0, title: "", completed: false }
   );
@@ -21,10 +22,15 @@ export const Modal: React.FC<Props> = (props) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodo((prev) => ({ ...prev, title: e.target.value }));
+    setHasError(false);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!todo.title) {
+      setHasError(true);
+      return;
+    }
     props.onSubmit(todo);
     props.onClose();
   };
@@ -41,6 +47,11 @@ export const Modal: React.FC<Props> = (props) => {
             onChange={handleChange}
             placeholder="タスク内容を入力"
           />
+          {hasError ? (
+            <span className={styles["input-title-error"]}>
+              タスクが未入力です。
+            </span>
+          ) : null}
           <div className={styles["modal-button"]}>
             <button className={styles["button-ok"]} type="submit">
               {props.todo ? "更新" : "追加"}

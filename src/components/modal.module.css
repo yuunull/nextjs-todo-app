@@ -43,3 +43,8 @@
   cursor: pointer;
   margin-left: 10px;
 }
+
+.input-title-error {
+  color: red;
+  font-size: 0.9rem;
+}
